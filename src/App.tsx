@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import image from "./assets/image.png"
-import arrow from "./assets/arrow.png"
-import eye from "./assets/eye.png"
+import image from "./assets/add_image.svg"
+import selector from "./assets/selector.svg"
+import active_eye from "./assets/active_eye.svg"
+import active_selector from "./assets/active_selector.svg"
+import eye from "./assets/eye.svg"
 
 
 function App() {
@@ -125,48 +127,55 @@ function App() {
 			}
 	}
 	const inputList =
-		<input type="text" className='block-input' value={num1 ? result : '0'} disabled={true}
-			draggable={true}
-			onDragStart={() => { dragStartHandler(1, inputList) }}
-			onDragLeave={(e: any) => { dragLeaveHandler(e) }}
-			onDragOver={(e: any) => { dragOverHandler(e) }}
-			onDragEnd={(e: any) => { dragEndHandler(e) }}
-		/>
+		<div className='block-white'>
+			<input type="text" className='block-input' value={num1 ? result : '0'} disabled={true}
+				draggable={true}
+				onDragStart={() => { dragStartHandler(1, inputList) }}
+				onDragLeave={(e: any) => { dragLeaveHandler(e) }}
+				onDragOver={(e: any) => { dragOverHandler(e) }}
+				onDragEnd={(e: any) => { dragEndHandler(e) }}
+			/>
+		</div>
 	const symbolList =
-		<div className='block-symbol'
-			draggable={true}
-			onDragStart={() => { dragStartHandler(2, symbolList) }}
-			onDragLeave={(e: any) => { dragLeaveHandler(e) }}
-			onDragOver={(e: any) => { dragOverHandler(e) }}
-			onDragEnd={(e: any) => { dragEndHandler(e) }}
-		>{
-				cardSymbol.map((el: any) => {
-					return (
-						<li key={el.id} onClick={() => calcSet('calcSymbol', el.text)} >
-							{el.text}
-						</li>
-					)
-				})
-			}
+		<div className='block-white'>
+			<div className='block-symbol'
+				draggable={true}
+				onDragStart={() => { dragStartHandler(2, symbolList) }}
+				onDragLeave={(e: any) => { dragLeaveHandler(e) }}
+				onDragOver={(e: any) => { dragOverHandler(e) }}
+				onDragEnd={(e: any) => { dragEndHandler(e) }}
+			>{
+					cardSymbol.map((el: any) => {
+						return (
+							<li key={el.id} onClick={() => calcSet('calcSymbol', el.text)} >
+								{el.text}
+							</li>
+						)
+					})
+				}
+			</div>
 		</div>
 
 	const numberList =
-		<div className='block-number'
-			draggable={true}
-			onDragStart={() => { dragStartHandler(3, numberList) }}
-			onDragLeave={(e: any) => { dragLeaveHandler(e) }}
-			onDragOver={(e: any) => { dragOverHandler(e) }}
-			onDragEnd={(e: any) => { dragEndHandler(e) }}
-		>
-			{cardNumber.map((el: any) => {
-				return (
-					<li key={el.id} className={el.className ? el.className : ''} onClick={(e: any) => calcSet('calcNum', el.text)}>
-						{el.text}
-					</li>
-				)
-			})}
+		<div className='block-white'>
+			<div className='block-number'
+				draggable={true}
+				onDragStart={() => { dragStartHandler(3, numberList) }}
+				onDragLeave={(e: any) => { dragLeaveHandler(e) }}
+				onDragOver={(e: any) => { dragOverHandler(e) }}
+				onDragEnd={(e: any) => { dragEndHandler(e) }}
+			>
+				{cardNumber.map((el: any) => {
+					return (
+						<li key={el.id} className={el.className ? el.className : ''} onClick={(e: any) => calcSet('calcNum', el.text)}>
+							{el.text}
+						</li>
+					)
+				})}
+			</div>
 		</div>
-	const btnList = <div className='block-btn' onClick={() => clickHandlerResult()}>
+
+	const btnList = <div className='block-white' onClick={() => clickHandlerResult()}>
 		<li className='btn'
 			draggable={true}
 			onDragStart={() => { dragStartHandler(4, btnList) }}
@@ -181,12 +190,11 @@ function App() {
 			<div className="app">
 				<div className='block-change-func'>
 					<div className={backgroundTime ? 'active' : 'block-runtime'} onClick={() => changeBackground('btn-1')}>
-						<img src={eye} alt="#" className='eye' />
+						<img src={backgroundTime ? active_eye : eye} alt="#" className='eye' />
 						<span>Runtime</span>
 					</div>
 					<div className={backgroundConstruct ? 'active' : 'block-constructor'} onClick={() => changeBackground('btn-2')}>
-						<img src={arrow} alt="#" className='arrow-left' />
-						<img src={arrow} alt="#" className='arrow-right' />
+						<img src={backgroundConstruct ? active_selector : selector} alt="#" className='selector' />
 						<span>Constructor</span>
 					</div>
 				</div>
