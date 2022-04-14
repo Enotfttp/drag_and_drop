@@ -24,7 +24,7 @@ function App() {
 				{
 					id: 1,
 					cardInput: {
-						id: 1, text: result
+						id: 1, text: '0'
 					}
 				},
 				{
@@ -70,9 +70,6 @@ function App() {
 
 	])
 
-	useEffect(() => {
-		setResult(`${num1}${valueZnak}${num2}`)
-	}, [num1, num2, valueZnak, currentItem, card])
 
 	const changeBackground = (btn: string) => {
 		if (btn === 'btn-1' && backgroundTime === false) {
@@ -81,7 +78,6 @@ function App() {
 		} else if (btn === 'btn-2' && backgroundConstruct === false) {
 			setBackgroundTime((backgroundTime) => backgroundTime = !backgroundTime)
 			setBackgroundConstruct(((backgroundConstruct) => backgroundConstruct = !backgroundConstruct))
-
 			setResult('')
 			setNum1('')
 			setNum2('')
@@ -91,6 +87,7 @@ function App() {
 	}
 
 	const dragStartHandler = (item: any, e: any, id: number) => {
+		e.target.style.opacity = "30%"
 		setCurrentBoard(id)
 		setCurrentItem(item)
 	}
@@ -128,6 +125,9 @@ function App() {
 
 	const dragEndHandler = (e: any, idItem: number) => {
 		card.forEach((element: any) => {
+			if (element.items.indexOf(currentItem) === -1) {
+				e.target.style.opacity = '100%';
+			}
 			if (element.id === 2 && element.items.indexOf(currentItem) === idItem) {
 				console.log('test');
 			}
@@ -207,7 +207,7 @@ function App() {
 										if (el.cardInput) {
 											return (
 												<div className='block-white' key={el.id}>
-													<input type="text" className='block-input' value={num1 ? el.cardInput.text : '0'} disabled={true}
+													<input type="text" className='block-input' value={result ? result : el.cardInput.text} disabled={true}
 														draggable={true}
 														onDragStart={(event: any) => { dragStartHandler(el, event, items.id) }}
 														onDragLeave={(event: any) => { dragLeaveHandler(event) }}
@@ -279,7 +279,7 @@ function App() {
 							</div>
 							{
 								items.id === 2 && items.items.length === 0 && (
-									<div className={"drag-drop"}
+									<div className="drag-drop"
 										onDragOver={(event: any) => { dragOverHandler(event, items.id) }}
 										onDragLeave={(event: any) => { dragLeaveHandler(event) }}
 										onDrop={(event: any) => { dragDropHandler(event, currentItem, items.id) }}
