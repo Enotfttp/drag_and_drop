@@ -2,6 +2,7 @@ That to start this application you need:
 1) open terminal
 2) write "npm i"
 3) write "npm start"
+
 In right now, i don't know these decide.
 Application can:
 1) Default move block from left to right block
