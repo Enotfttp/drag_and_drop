@@ -1,0 +1,10 @@
+export const BACKGROUNDTIME = 'BACKGROUNDTIME';
+export const BACKGROUNDCONSTRUCT = 'BACKGROUNDCONSTRUCT';
+export const CURRENTBOARD = 'CURRENTBOARD';
+export const CURRENTITEM = 'CURRENTITEM';
+export const NUM1 = 'NUM1';
+export const NUM2 = 'NUM2';
+export const ZNAK = 'ZNAK';
+export const VALUEZNAK = 'VALUEZNAK';
+export const RESULT = 'RESULT';
+export const CARD = 'CARD';

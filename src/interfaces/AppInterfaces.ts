@@ -1,9 +1,28 @@
-export default interface ICard {
+export default interface IDefaultStore{ 
+	backgroundTime: boolean,
+	backgroundConstruct: boolean,
+	currentBoard: number,
+	currentItem: IBlockItems,
+	num1: string,
+	num2: string,
+	znak: false,
+	valueZnak: string,
+	result: string;	
+	card:ICard[]
+}
+
+export interface ICardItem { 
+	item: IBlockItems,
+	board: number
+} 
+
+export  interface ICard {
 	id: number
 	items: IBlockItems[]
 }
+
 export interface IBlockItems {
-	id: number,
+	id?: number,
 	cardInput?: {
 		id: number,
 		text: string,
@@ -15,6 +34,7 @@ export interface IBlockItems {
 		text: string,
 	}
 }
+
 export interface IItems {
 	id: number,
 	text: string,
