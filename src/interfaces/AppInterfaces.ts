@@ -8,6 +8,7 @@ export default interface IDefaultStore{
 	znak: false,
 	valueZnak: string,
 	result: string;	
+	overItem: IBlockItems,
 	card:ICard[]
 }
 

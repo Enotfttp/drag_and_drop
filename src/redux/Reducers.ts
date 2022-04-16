@@ -1,7 +1,7 @@
 
 import { COMMA, EQUALLY, MINUS, MULTIPLY, PLUS, SHARE } from '../constants/constants'
-import IDefaultStore, { IBlockItems,  ICardItem } from '../interfaces/AppInterfaces'
-import { BACKGROUNDCONSTRUCT, BACKGROUNDTIME, CARD, CURRENTBOARD, CURRENTITEM, NUM1, NUM2, RESULT, VALUEZNAK, ZNAK } from './ReduxConstants'
+import IDefaultStore, { IBlockItems,  ICard,  ICardItem } from '../interfaces/AppInterfaces'
+import { BACKGROUNDCONSTRUCT, BACKGROUNDTIME, CARD, CURRENTBOARD, CURRENTITEM, NUM1, NUM2, OVERITEM, RESULT, VALUEZNAK, ZNAK } from './ReduxConstants'
 
 export const defaultStore:IDefaultStore = {
 	backgroundTime: false,
@@ -13,6 +13,7 @@ export const defaultStore:IDefaultStore = {
 	znak: false,
 	valueZnak: '',
 	result: '',
+	overItem: {},
 	card: [
 		{
 			id: 0,
@@ -84,11 +85,13 @@ export const reducer = (state = defaultStore, action: any) => {
 			return { ...state, valueZnak: action.payload };
 		case RESULT:
 			return { ...state, result: action.payload };
+		case OVERITEM:
+			return { ...state, overItem: action.payload };
 		case CARD:
 			return {
-				...state, card: state.card.map((el: any) => {
+				...state, card: state.card.map((el: ICard) => {
 					if (el.id !== state.currentBoard && el.items.indexOf(action.payload.item) === -1 && state.currentBoard !== action.payload.board) {
-						el.items.push(action.payload.item)
+						el.items.splice(el.items.indexOf(state.overItem) + 1, 0, action.payload.item)
 					}
 					return el;
 				})
@@ -107,6 +110,7 @@ export const num2Reducer = (payload: string) => ({ type: NUM2, payload });
 export const znakReducer = (payload: boolean) => ({ type: ZNAK, payload });
 export const valueZnakReducer = (payload: string) => ({ type: VALUEZNAK, payload });
 export const resultReducer = (payload: string) => ({ type: RESULT, payload });
+export const overItemReducer = (payload:  IBlockItems) => ({type:OVERITEM, payload})
 export const cardReducer = (payload: ICardItem) => ({ type: CARD, payload });
 
 

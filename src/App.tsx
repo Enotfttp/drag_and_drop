@@ -6,7 +6,7 @@ import active_selector from './assets/active_selector.svg'
 import eye from './assets/eye.svg'
 import  IDefaultStore, { ICard,IBlockItems, IItems } from './interfaces/AppInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { cardReducer, constructReducer, currentBoardReducer, currentItemReducer, num1Reducer, num2Reducer, resultReducer, timeReducer, valueZnakReducer, znakReducer } from './redux/Reducers';
+import { cardReducer, constructReducer, currentBoardReducer, currentItemReducer, num1Reducer, num2Reducer, overItemReducer, resultReducer, timeReducer, valueZnakReducer, znakReducer } from './redux/Reducers';
 
 
 function App() {
@@ -38,14 +38,17 @@ function App() {
 	const dragLeaveHandler = (event: any): void => {
 		if (event.target.className === 'drag-drop') {
 			event.target.style.background = '#fff';
-		}
+		} 
 	}
 
-	const dragOverHandler = (event: any): void => {
+	const dragOverHandler = (event: any, item?: IBlockItems): void => {
+		if (item) {
+			dispatch(overItemReducer(item))
+		}
 		event.preventDefault();
 		if (event.target.className === 'drag-drop') {
 			event.target.style.background = '#F0F9FF';
-		} else {
+		} else{
 			event.target.style.cursor = 'move';
 		}
 	}
@@ -145,7 +148,7 @@ function App() {
 													draggable={true}
 													onDragStart={(event: any) => { dragStartHandler(el, event, items.id) }}
 													onDragLeave={(event: any) => { dragLeaveHandler(event) }}
-													onDragOver={(event: any) => { dragOverHandler(event) }}
+													onDragOver={(event: any) => { dragOverHandler(event, el) }}
 													onDragEnd={(event: any) => { dragEndHandler(event) }}
 													onDrop={(event: any) => { dragDropHandler(event, store.currentItem, items.id) }}
 												>
@@ -160,7 +163,7 @@ function App() {
 													draggable={true}
 													onDragStart={(event: any) => { dragStartHandler(el, event, items.id) }}
 													onDragLeave={(event: any) => { dragLeaveHandler(event) }}
-													onDragOver={(event: any) => { dragOverHandler(event) }}
+													onDragOver={(event: any) => { dragOverHandler(event, el) }}
 													onDragEnd={(event: any) => { dragEndHandler(event) }}
 													onDrop={(event: any) => { dragDropHandler(event, store.currentItem, items.id) }}
 												>
@@ -182,7 +185,7 @@ function App() {
 													draggable={true}
 													onDragStart={(event: any) => { dragStartHandler(el, event, items.id) }}
 													onDragLeave={(event: any) => { dragLeaveHandler(event) }}
-													onDragOver={(event: any) => { dragOverHandler(event) }}
+													onDragOver={(event: any) => { dragOverHandler(event, el) }}
 													onDragEnd={(event: any) => { dragEndHandler(event) }}
 													onDrop={(event: any) => { dragDropHandler(event, store.currentItem, items.id) }}
 												>
@@ -204,7 +207,7 @@ function App() {
 													draggable={true}
 													onDragStart={(event: any) => { dragStartHandler(el, event, items.id) }}
 													onDragLeave={(event: any) => { dragLeaveHandler(event) }}
-													onDragOver={(event: any) => { dragOverHandler(event) }}
+													onDragOver={(event: any) => { dragOverHandler(event, el) }}
 													onDragEnd={(event: any) => { dragEndHandler(event) }}
 													onDrop={(event: any) => { dragDropHandler(event, store.currentItem, items.id) }}
 												>

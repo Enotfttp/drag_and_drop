@@ -7,4 +7,5 @@ export const NUM2 = 'NUM2';
 export const ZNAK = 'ZNAK';
 export const VALUEZNAK = 'VALUEZNAK';
 export const RESULT = 'RESULT';
+export const OVERITEM = 'OVERITEM';
 export const CARD = 'CARD';
