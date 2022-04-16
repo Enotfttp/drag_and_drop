@@ -10,5 +10,6 @@ Application can:
 
 Start application:
 To launch application "npm start" 
-![image](https://user-images.githubusercontent.com/62541039/163456109-2374d6ca-7615-4f52-8f57-257491f2eeae.png)
-![image](https://user-images.githubusercontent.com/62541039/163456183-dff36e13-00d5-494d-a31c-61e0e02dc237.png)
+![image](https://user-images.githubusercontent.com/62541039/163627782-bf3e851d-45f1-4ddd-ae07-83e284b5c6a4.png)
+![image](https://user-images.githubusercontent.com/62541039/163627765-dac1037d-46b4-4e1c-b1d4-ca34466151b8.png)
+![image](https://user-images.githubusercontent.com/62541039/163627712-0522d6d2-8932-4522-9234-f4a2b713abd7.png)
