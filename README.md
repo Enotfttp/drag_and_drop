@@ -1,3 +1,6 @@
+Link on deploy version
+https://drag-and-drop-delpoy.netlify.app/
+
 That to start this application you need:
 1) open terminal
 2) write "npm i"
